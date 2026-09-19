@@ -1,0 +1,24 @@
+# VS Code
+.vscode/
+
+# C/C++ 编译产物
+*.exe
+*.o
+*.obj
+*.out
+
+# 调试产生的文件
+*.pdb
+*.ilk
+
+# 构建目录
+build/
+cmake-build-*/
+
+# 临时文件
+*.tmp
+*.log
+
+# Windows
+Thumbs.db
+Desktop.ini
