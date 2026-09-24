@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="contact_management_system/contact_management_system.vcxproj" Id="13a7366d-0d5e-498b-b466-94992d0cb964" />
+</Solution>
