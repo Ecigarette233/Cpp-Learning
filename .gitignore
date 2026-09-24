@@ -1,24 +1,37 @@
-# VS Code
+# Editors / IDEs
 .vscode/
+.vs/
+*.user
+*.suo
+*.VC.db
+*.VC.VC.opendb
 
-# C/C++ 编译产物
-*.exe
-*.o
-*.obj
-*.out
-
-# 调试产生的文件
-*.pdb
-*.ilk
-
-# 构建目录
+# Build directories
 build/
 cmake-build-*/
+x64/
+x86/
+Debug/
+Release/
 
-# 临时文件
+# C / C++ build artifacts
+*.exe
+*.out
+*.o
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.ipch
+*.tlog
+*.recipe
+*.lastbuildstate
+
+# Temporary files
 *.tmp
 *.log
 
-# Windows
+# OS files
 Thumbs.db
 Desktop.ini
+.DS_Store
