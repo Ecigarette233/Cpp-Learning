@@ -56,7 +56,7 @@ A personal repository for learning and practicing C++ from basic syntax to core 
 - [x] Object model and `this` pointer
 - [x] Friend functions and friend classes
 - [x] Operator overloading
-- [ ] Inheritance
+- [x] Inheritance
 - [ ] Polymorphism
 - [ ] Templates
 - [ ] STL
