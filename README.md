@@ -57,7 +57,7 @@ A personal repository for learning and practicing C++ from basic syntax to core 
 - [x] Friend functions and friend classes
 - [x] Operator overloading
 - [x] Inheritance
-- [ ] Polymorphism
+- [x] Polymorphism
 - [ ] Templates
 - [ ] STL
 
