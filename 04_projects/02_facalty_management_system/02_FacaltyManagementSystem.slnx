@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="02_FacaltyManagementSystem/02_FacaltyManagementSystem.vcxproj" Id="6576b7b6-04d9-4374-803d-f2bb0fec0e26" />
+</Solution>
