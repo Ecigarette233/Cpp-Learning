@@ -6,6 +6,7 @@ using namespace std;
 
 #include <fstream>
 
+//构造函数
 WorkerManager::WorkerManager()
 {
 	//初始化成员属性
@@ -23,8 +24,8 @@ WorkerManager::WorkerManager()
 		//职工数组为NULL
 		this->empArray = NULL;
 
-		//文件状态改为存在
-		this->fileIsExist = true;
+		//文件状态改为空
+		this->fileIsExist = false;
 
 		ifs.close();
 		return;
@@ -72,6 +73,7 @@ WorkerManager::WorkerManager()
 
 }
 
+//展示菜单
 void WorkerManager::showMenu()
 {
 	cout << " *************************** " << endl;
@@ -87,6 +89,7 @@ void WorkerManager::showMenu()
 	cout << " *************************** " << endl;
 }
 
+//退出系统
 void WorkerManager::exitSystem()
 {
 	cout << "欢迎下次使用！" << endl;
@@ -94,6 +97,7 @@ void WorkerManager::exitSystem()
 	exit(0);
 }
 
+//添加职工
 void WorkerManager::addEmp()
 {
 	cout << "请输入要添加的人数" << endl;
@@ -162,7 +166,7 @@ void WorkerManager::addEmp()
 
 		delete[] this->empArray;
 		this->empArray = newSpace;
-		this->num = newSize;
+		this->fileIsExist = false;
 
 		cout << "添加成功" << endl;
 		this->save();
@@ -179,6 +183,7 @@ void WorkerManager::addEmp()
 
 }
 
+//保存文件
 void WorkerManager::save()
 {
 	ofstream ofs;
@@ -247,6 +252,24 @@ void WorkerManager::initEmp()
 	ifs.close();
 }
 
+void WorkerManager::showEmp()
+{
+	if (!this->fileIsExist)
+	{
+		cout << "文件不存在或为空！" << endl;
+		return;
+	}
+	else
+	{
+		for (int i = 0;i < this->num;i++) 
+		{
+			this->empArray[i]->showInformation();
+		}
+	}
+
+}
+
+//析构函数
 WorkerManager::~WorkerManager()
 {
 

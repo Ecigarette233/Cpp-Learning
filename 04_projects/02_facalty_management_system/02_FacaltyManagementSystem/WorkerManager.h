@@ -32,6 +32,9 @@ public:
 	//初始化数组
 	void initEmp();
 
+	//显示所有职工
+	void showEmp();
+
 	
 	//成员属性
 
