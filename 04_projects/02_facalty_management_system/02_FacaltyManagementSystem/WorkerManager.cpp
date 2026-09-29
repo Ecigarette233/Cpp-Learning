@@ -4,12 +4,72 @@
 #include <iostream>
 using namespace std;
 
+#include <fstream>
+
 WorkerManager::WorkerManager()
 {
 	//初始化成员属性
 
-	this->num = 0;
-	this->empArray = NULL;
+	ifstream ifs;
+	ifs.open("empfile.txt", ios::in);
+
+	//1.文件不存在
+	if (!ifs.is_open())
+	{
+		cout << "文件不存在" << endl;
+		//职工数量为0
+		this->num = 0;
+
+		//职工数组为NULL
+		this->empArray = NULL;
+
+		//文件状态改为存在
+		this->fileIsExist = true;
+
+		ifs.close();
+		return;
+	}
+
+	//2.文件为空
+	//读取一个字符，如果读取到的字符为文件尾字符，则文件为空
+	char ch;
+	ifs >> ch;
+
+	//如果读到的是文件尾字符
+	if (ifs.eof())
+	{
+		cout << "文件为空" << endl;
+
+		//职工数量为0
+		this->num = 0;
+
+		//职工数组为NULL
+		this->empArray = NULL;
+
+		//文件状态改为存在
+		this->fileIsExist = true;
+
+		ifs.close();
+		return;
+	}
+
+	//3.文件存在，且不为空，需要记录数据
+	int empNum = this->getEmpNum();
+	cout << "职工人数为：" << empNum << endl;
+
+	this->num = empNum;
+
+	this->empArray = new Worker * [this->num];
+	this->initEmp();
+	
+	//测试代码
+	for (int i = 0;i < this->num;i++)
+	{
+		cout << "员工编号为:" << this->empArray[i]->ID << "  "
+			<< "员工姓名为:" << this->empArray[i]->Name << "  "
+			<< "员工部门编号为:" << this->empArray[i]->departmentID << endl;
+	}
+
 }
 
 void WorkerManager::showMenu()
@@ -77,7 +137,7 @@ void WorkerManager::addEmp()
 			cout << "部门编号为：" << endl;
 			cout << "总裁：1" << endl;
 			cout << "经理：2" << endl;
-			cout << "普通职员：1" << endl;
+			cout << "普通职员：3" << endl;
 			cin >> DepartmentID;
 
 			Worker* worker = NULL;
@@ -91,7 +151,7 @@ void WorkerManager::addEmp()
 				worker = new Manager(ID, Name, 2);
 				break;
 			case 3:
-				worker = new Boss(ID, Name, 3);
+				worker = new Employee(ID, Name, 3);
 				break;
 			default:
 				break;
@@ -99,14 +159,92 @@ void WorkerManager::addEmp()
 
 			newSpace[this->num + i] = worker;
 		}
+
+		delete[] this->empArray;
+		this->empArray = newSpace;
+		this->num = newSize;
+
+		cout << "添加成功" << endl;
+		this->save();
 	}
 	else
 	{
 		//输入了错误数据
 		cout << "输入数据有误，请重试" << endl;
+		return;
 	}
 
+	system("pause");
+	system("cls");
 
+}
+
+void WorkerManager::save()
+{
+	ofstream ofs;
+	ofs.open("empfile.txt", ios::out);
+
+	for (int i = 0;i < this->num;i++)
+	{
+		ofs << this->empArray[i]->ID << " "
+			<< this->empArray[i]->Name << " "
+			<< this->empArray[i]->departmentID;
+	}
+
+	ofs.close();
+}
+
+//文件再次打开时获取人数
+int WorkerManager::getEmpNum()
+{
+	ifstream ifs;
+	ifs.open("empfile.txt", ios::in);
+
+	int ID;
+	string Name;
+	int DepartmentID;
+
+	int num = 0;
+	while (ifs >> ID && ifs >> Name && ifs >> DepartmentID)
+	{
+		num++;
+	}
+	ifs.close();
+	return num;
+}
+
+//文件再次打开时重新初始化数组
+void WorkerManager::initEmp()
+{
+	ifstream ifs;
+	ifs.open("empFile.txt", ios::in);
+
+	int ID;
+	string Name;
+	int DepartmentID;
+
+	int index = 0;
+	while (ifs >> ID >> Name >> DepartmentID)
+	{
+		Worker* worker = NULL;
+		if (DepartmentID == 1)
+		{
+			worker = new Boss(ID, Name, DepartmentID);
+		}
+		else if(DepartmentID ==2)
+		{
+			worker = new Manager(ID, Name, DepartmentID);
+		}
+		else
+		{
+			worker = new Employee(ID, Name, DepartmentID);
+		}
+
+		this->empArray[index] = worker;
+		index++;
+	}
+
+	ifs.close();
 }
 
 WorkerManager::~WorkerManager()

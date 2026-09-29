@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "WorkerManager.h"
 #include <iostream>
 using namespace std;
 #include <string>
