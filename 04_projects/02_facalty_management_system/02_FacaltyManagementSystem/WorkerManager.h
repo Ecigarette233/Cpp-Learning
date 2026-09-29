@@ -8,6 +8,8 @@
 #include "employee.h"
 #include "boss.h"
 
+#define FILENAME "empfile.txt"
+
 class WorkerManager
 {
 public:
@@ -35,7 +37,24 @@ public:
 	//显示所有职工
 	void showEmp();
 
-	
+	//判断职工是否存在 并返回职工在数组的位置
+	int isExist(int id);
+
+	//删除职工
+	void deleteEmp();
+
+	//修改员工
+	void modifyEmp();
+
+	//查找职工
+	void findEmp();
+
+	//排序
+	void sortEmp();
+
+	//清空文件
+	void cleanEmp();
+
 	//成员属性
 
 	//1.职工人数

@@ -11,20 +11,6 @@ int main()
 {
 	WorkerManager wm;
 
-	//test
-	//Worker* worker = new Employee(1, "张三", 1);
-	//worker->showInformation();
-	//delete worker;
-
-	//worker = new Manager(2, "李四", 2);
-	//worker->showInformation();
-	//delete worker;
-
-	//worker = new Boss(3, "王五", 3);
-	//worker->showInformation();
-	//delete worker;
-
-	
 	while (1)
 	{
 		wm.showMenu();
@@ -37,7 +23,6 @@ int main()
 		{
 		case 0:		//退出系统
 			wm.exitSystem();
-			 
 		case 1:		//添加职工
 			wm.addEmp();
 			break;
@@ -45,14 +30,19 @@ int main()
 			wm.showEmp();
 			break;
 		case 3:		//删除职工
+			wm.deleteEmp();
 			break;
 		case 4:		//修改职工
+			wm.modifyEmp();
 			break;
 		case 5:		//查询职工
+			wm.findEmp();
 			break;
 		case 6:		//排序
+			wm.sortEmp();
 			break;
 		case 7:		//清空文档
+			wm.cleanEmp();
 			break;
 		default:
 			system("cls");
